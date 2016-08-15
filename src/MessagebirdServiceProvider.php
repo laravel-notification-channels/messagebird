@@ -3,6 +3,7 @@
 namespace NotificationChannels\Messagebird;
 
 use Illuminate\Support\ServiceProvider;
+use MessageBird\Client;
 use NotificationChannels\Messagebird\Exceptions\InvalidConfiguration;
 
 class MessagebirdServiceProvider extends ServiceProvider
@@ -13,7 +14,7 @@ class MessagebirdServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->when(MessagebirdChannel::class)
-            ->needs(\MessageBird\Client::class)
+            ->needs(Client::class)
             ->give(function () {
                 $config = config('services.messagebird');
 
@@ -21,16 +22,9 @@ class MessagebirdServiceProvider extends ServiceProvider
                     throw InvalidConfiguration::configurationNotSet();
                 }
 
-                return new \MessageBird\Client(
+                return new Client(
                     $config['access_key']
                 );
             });
-    }
-
-    /**
-     * Register the application services.
-     */
-    public function register()
-    {
     }
 }

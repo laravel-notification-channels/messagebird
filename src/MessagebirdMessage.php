@@ -27,14 +27,19 @@ class MessagebirdMessage extends Message
         $this->originator = $originator ?: config('services.messagebird.originator');
     }
 
-    public function setRecipients($recipients)
+    public function setRecipients($recipients = null)
     {
-        if (is_array($recipients)) {
-            $this->recipients = $recipients;
-        } elseif (is_string($recipients)) {
-            $this->recipients[] = $recipients;
-        } else {
-            $this->recipients[] = config('services.messagebird.recipients');
+        if (!$recipients) {
+            $recipients = config('services.messagebird.recipients');
         }
+
+        if (is_string($recipients)) {
+            $recipients = [$recipients];
+        }
+
+        $this->recipients = $recipients;
+
+        return $this;
+
     }
 }

@@ -18,7 +18,7 @@ class CouldNotSendNotification extends Exception
     /**
      * @return static
      */
-    public static function authenticationException()
+    public static function couldNotAuthenticate()
     {
         return new static('You have entered the wrong credentials.');
     }
@@ -26,7 +26,7 @@ class CouldNotSendNotification extends Exception
     /**
      * @return static
      */
-    public static function balanceException()
+    public static function notEnoughCredits()
     {
         return new static('Not enough credits.');
     }

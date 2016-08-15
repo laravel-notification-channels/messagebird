@@ -2,7 +2,10 @@
 
 namespace NotificationChannels\Messagebird;
 
+use Exception;
 use Illuminate\Notifications\Notification;
+use MessageBird\Exceptions\AuthenticateException;
+use MessageBird\Exceptions\BalanceException;
 use NotificationChannels\Messagebird\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Messagebird\Events\MessageWasSent;
 use NotificationChannels\Messagebird\Events\SendingMessage;
@@ -10,6 +13,7 @@ use MessageBird\Client;
 
 class MessagebirdChannel
 {
+    /** @var \MessageBird\Client  */
     protected $client;
 
     public function __construct(Client $client)
@@ -42,11 +46,11 @@ class MessagebirdChannel
 
         try {
             $this->client->messages->create($message);
-        } catch (\MessageBird\Exceptions\AuthenticateException $e) {
-            throw CouldNotSendNotification::balanceException();
-        } catch (\MessageBird\Exceptions\BalanceException $e) {
-            throw CouldNotSendNotification::balanceException();
-        } catch (\Exception $exception) {
+        } catch (AuthenticateException $exception) {
+            throw CouldNotSendNotification::couldNotAuthenticate();
+        } catch (BalanceException $exception) {
+            throw CouldNotSendNotification::notEnoughCredits();
+        } catch (Exception $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
         }
 

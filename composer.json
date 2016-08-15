@@ -16,7 +16,7 @@
         "illuminate/notifications": "^5.3@dev",
         "illuminate/support": "^5.3@dev",
         "illuminate/events": "^5.3@dev",
-        "messagebird/php-rest-api": "1.4.x"
+        "messagebird/php-rest-api": "^1.4"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
