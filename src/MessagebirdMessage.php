@@ -22,12 +22,12 @@ class MessagebirdMessage extends Message
         $this->setRecipients($recipients);
     }
 
-    private function setOriginator($originator)
+    public function setOriginator($originator)
     {
         $this->originator = $originator ?: config('services.messagebird.originator');
     }
 
-    private function setRecipients($recipients)
+    public function setRecipients($recipients)
     {
         if (is_array($recipients)) {
             $this->recipients = $recipients;
