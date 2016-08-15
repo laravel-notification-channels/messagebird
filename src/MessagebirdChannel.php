@@ -13,7 +13,7 @@ use MessageBird\Client;
 
 class MessagebirdChannel
 {
-    /** @var \MessageBird\Client  */
+    /** @var \MessageBird\Client */
     protected $client;
 
     public function __construct(Client $client)
@@ -29,8 +29,6 @@ class MessagebirdChannel
      *
      * @throws \NotificationChannels\MessageBird\Exceptions\CouldNotSendNotification
      */
-
-
     public function send($notifiable, Notification $notification)
     {
         $shouldSendMessage = event(new SendingMessage($notifiable, $notification), [], true) !== false;

@@ -6,7 +6,6 @@ use MessageBird\Objects\Message;
 
 class MessagebirdMessage extends Message
 {
-
     public static function create($body = '', $originator = null, $recipients = null)
     {
         return new static($body, $originator, $recipients);
@@ -14,7 +13,7 @@ class MessagebirdMessage extends Message
 
     public function __construct($body = '', $originator = null, $recipients = null)
     {
-        if (!empty($body)) {
+        if (! empty($body)) {
             $this->body(trim($body));
         }
 
@@ -29,7 +28,7 @@ class MessagebirdMessage extends Message
 
     public function setRecipients($recipients = null)
     {
-        if (!$recipients) {
+        if (! $recipients) {
             $recipients = config('services.messagebird.recipients');
         }
 
@@ -40,6 +39,5 @@ class MessagebirdMessage extends Message
         $this->recipients = $recipients;
 
         return $this;
-
     }
 }
