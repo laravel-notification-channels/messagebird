@@ -6,32 +6,34 @@ use MessageBird\Objects\Message;
 
 class MessagebirdMessage extends Message
 {
-    public static function create($body = '', $originator = null, $recipients = null)
+    public static function create($body = '')
     {
-        return new static($body, $originator, $recipients);
+        return new static($body);
     }
 
-    public function __construct($body = '', $originator = null, $recipients = null)
+    public function __construct($body = '')
     {
         if (! empty($body)) {
-            $this->body(trim($body));
+            $this->body = trim($body);
         }
+    }
 
-        $this->setOriginator($originator);
-        $this->setRecipients($recipients);
+    public function setBody($body)
+    {
+        $this->body = trim($body);
+
+        return $this;
     }
 
     public function setOriginator($originator)
     {
-        $this->originator = $originator ?: config('services.messagebird.originator');
+        $this->originator = $originator;
+
+        return $this;
     }
 
-    public function setRecipients($recipients = null)
+    public function setRecipients($recipients)
     {
-        if (! $recipients) {
-            $recipients = config('services.messagebird.recipients');
-        }
-
         if (is_string($recipients)) {
             $recipients = [$recipients];
         }

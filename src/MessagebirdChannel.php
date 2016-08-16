@@ -35,6 +35,14 @@ class MessagebirdChannel
             $message = MessagebirdMessage::create($message);
         }
 
+        if (empty($message->originator)) {
+            $message->setOriginator(config('services.messagebird.originator'));
+        }
+
+        if (empty($message->recipients)) {
+            $message->setRecipients(config('services.messagebird.recipients'));
+        }
+
         try {
             $this->client->messages->create($message);
         } catch (AuthenticateException $exception) {

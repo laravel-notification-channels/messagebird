@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="JusibeChannel Test Suite">
+        <testsuite name="MessagebirdChannel Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

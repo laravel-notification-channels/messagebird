@@ -14,6 +14,7 @@ This package makes it easy to send [Messagebird SMS notifications](https://githu
 
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Setting up your Messagebird account](#setting-up-your-messagebird-account)
 - [Usage](#usage)
 - [Changelog](#changelog)
 - [Testing](#testing)
@@ -45,12 +46,22 @@ You must install the service provider:
 ],
 ```
 
-### Setting up your Messagebird account
+## Setting up your Messagebird account
 
-Add your Messagebird Account Key, Acess Token, and From Number (optional) to your `config/services.php`:
+Add your Messagebird Access Key, Default originator (name or number of sender), and default recipients to your `config/services.php`:
 
-TO DO: add configuration here.
+```php
+// config/services.php
+...
+'messagebird' => [
+    'access_key' => env('MESSAGEBIRD_ACCESS_KEY'),
+    'originator' => env('MESSAGEBIRD_ORIGINATOR'),
+    'recipients' => env('MESSAGEBIRD_RECIPIENTS')
+]
+...
+```
 
+Notice: The originator can contain a maximum of 11 alfa-numeric characters.
 
 ## Usage
 
