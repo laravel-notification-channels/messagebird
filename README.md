@@ -58,7 +58,7 @@ Add your Messagebird Access Key, Default originator (name or number of sender), 
     'access_key' => env('MESSAGEBIRD_ACCESS_KEY'),
     'originator' => env('MESSAGEBIRD_ORIGINATOR'),
     'recipients' => env('MESSAGEBIRD_RECIPIENTS')
-]
+],
 ...
 ```
 
