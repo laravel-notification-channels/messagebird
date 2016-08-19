@@ -50,6 +50,6 @@ class TestNotification extends Notification
 {
     public function toMessagebird($notifiable)
     {
-        return (new MessagebirdMessage("Message content"))->setOriginator('APPNAME')->setRecipients('0031650520659');
+        return (new MessagebirdMessage('Message content'))->setOriginator('APPNAME')->setRecipients('0031650520659');
     }
 }
