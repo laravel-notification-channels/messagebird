@@ -17,7 +17,12 @@ class MessagebirdClient
         $this->client = $client;
     }
 
-    public function send($message) {
+    /**
+     * Send the Message through MessageBird Client
+     * @param MessagebirdMessage $message
+     * @throws CouldNotSendNotification
+     */
+    public function send(MessagebirdMessage $message) {
         if (empty($message->originator)) {
             $message->setOriginator(config('services.messagebird.originator'));
         }
