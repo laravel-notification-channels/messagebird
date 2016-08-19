@@ -17,7 +17,8 @@ class MessagebirdClient
         $this->client = $client;
     }
 
-    public function send($message) {
+    public function send($message)
+    {
         if (empty($message->originator)) {
             $message->setOriginator(config('services.messagebird.originator'));
         }
