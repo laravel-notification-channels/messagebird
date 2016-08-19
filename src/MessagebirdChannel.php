@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notification;
 
 class MessagebirdChannel
 {
-    /** @var \MessageBird\Client */
+    /** @var \NotificationChannels\Messagebird\MessagebirdClient */
     protected $client;
 
     public function __construct(MessagebirdClient $client)
