@@ -14,7 +14,7 @@ class MessagebirdServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->when(MessagebirdChannel::class)
-            ->needs(Client::class)
+            ->needs(MessagebirdClient::class)
             ->give(function () {
                 $config = config('services.messagebird');
 
@@ -22,9 +22,9 @@ class MessagebirdServiceProvider extends ServiceProvider
                     throw InvalidConfiguration::configurationNotSet();
                 }
 
-                return new Client(
+                return new MessagebirdClient(new Client(
                     $config['access_key']
-                );
+                ));
             });
     }
 }
