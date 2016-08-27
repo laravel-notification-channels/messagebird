@@ -23,7 +23,7 @@ class MessagebirdClient
     }
 
     /**
-     * Send the Message
+     * Send the Message.
      * @param MessagebirdMessage $message
      * @throws CouldNotSendNotification
      */
@@ -40,7 +40,7 @@ class MessagebirdClient
             $this->client->request('POST', 'https://rest.messagebird.com/messages', [
                 'body' => $message->toJson(),
                 'headers' => [
-                    'Authorization' => 'AccessKey ' . $this->access_key
+                    'Authorization' => 'AccessKey '.$this->access_key
                 ],
             ]);
         } catch (Exception $exception) {
