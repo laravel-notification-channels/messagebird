@@ -2,9 +2,9 @@
 
 namespace NotificationChannels\Messagebird\Test;
 
+use GuzzleHttp\Client;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use MessageBird\Client;
 use Mockery;
 use NotificationChannels\Messagebird\MessagebirdChannel;
 use NotificationChannels\Messagebird\MessagebirdClient;
@@ -17,8 +17,8 @@ class MessagebirdChannelTest extends PHPUnit_Framework_TestCase
     {
         $this->notification = new TestNotification;
         $this->notifiable = new TestNotifiable;
-        $this->messagebirdClient = Mockery::mock(new Client('test_1234567890'));
-        $this->client = Mockery::mock(new MessagebirdClient($this->messagebirdClient));
+        $this->guzzle = Mockery::mock(new Client());
+        $this->client = Mockery::mock(new MessagebirdClient($this->guzzle, 'test_ek1qBbKbHoA20gZHM40RBjxzX'));
         $this->channel = new MessagebirdChannel($this->client);
     }
 
@@ -34,6 +34,13 @@ class MessagebirdChannelTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(MessagebirdClient::class, $this->client);
         $this->assertInstanceOf(MessagebirdChannel::class, $this->channel);
     }
+
+    /** @test */
+    public function test_it_shares_message()
+    {
+        $this->client->shouldReceive('send')->once();
+        $this->channel->send($this->notifiable, $this->notification);
+    }
 }
 
 class TestNotifiable
@@ -42,7 +49,7 @@ class TestNotifiable
 
     public function routeNotificationForMessagebird()
     {
-        return '0031650520659';
+        return '31650520659';
     }
 }
 
@@ -50,6 +57,6 @@ class TestNotification extends Notification
 {
     public function toMessagebird($notifiable)
     {
-        return (new MessagebirdMessage('Message content'))->setOriginator('APPNAME')->setRecipients('0031650520659');
+        return (new MessagebirdMessage('Message content'))->setOriginator('APPNAME')->setRecipients('31650520659');
     }
 }

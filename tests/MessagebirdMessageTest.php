@@ -50,9 +50,17 @@ class MessagebirdMessageTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_set_recipients_from_array()
     {
-        $message = (new MessagebirdMessage)->setRecipients([31650520659]);
+        $message = (new MessagebirdMessage)->setRecipients([31650520659, 31599858770]);
 
-        $this->assertEquals([31650520659], $message->recipients);
+        $this->assertEquals('31650520659,31599858770', $message->recipients);
+    }
+
+    /** @test */
+    public function it_can_set_recipients_from_integer()
+    {
+        $message = (new MessagebirdMessage)->setRecipients(31650520659);
+
+        $this->assertEquals(31650520659, $message->recipients);
     }
 
     /** @test */
@@ -60,6 +68,6 @@ class MessagebirdMessageTest extends \PHPUnit_Framework_TestCase
     {
         $message = (new MessagebirdMessage)->setRecipients('31650520659');
 
-        $this->assertEquals([31650520659], $message->recipients);
+        $this->assertEquals('31650520659', $message->recipients);
     }
 }

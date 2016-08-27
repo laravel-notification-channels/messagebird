@@ -3,22 +3,27 @@
 namespace NotificationChannels\Messagebird;
 
 use Exception;
-use MessageBird\Exceptions\AuthenticateException;
-use MessageBird\Exceptions\BalanceException;
+use GuzzleHttp\Client;
 use NotificationChannels\Messagebird\Exceptions\CouldNotSendNotification;
-use MessageBird\Client;
 
 class MessagebirdClient
 {
     protected $client;
+    protected $access_key;
 
-    public function __construct(Client $client)
+    /**
+     * MessagebirdClient constructor.
+     * @param Client $client
+     * @param $access_key string API Key from Messagebird API
+     */
+    public function __construct(Client $client, $access_key)
     {
         $this->client = $client;
+        $this->access_key = $access_key;
     }
 
     /**
-     * Send the Message through MessageBird Client.
+     * Send the Message
      * @param MessagebirdMessage $message
      * @throws CouldNotSendNotification
      */
@@ -32,11 +37,12 @@ class MessagebirdClient
         }
 
         try {
-            $this->client->messages->create($message);
-        } catch (AuthenticateException $exception) {
-            throw CouldNotSendNotification::couldNotAuthenticate();
-        } catch (BalanceException $exception) {
-            throw CouldNotSendNotification::notEnoughCredits();
+            $this->client->request('POST', 'https://rest.messagebird.com/messages', [
+                'body' => $message->toJson(),
+                'headers' => [
+                    'Authorization' => 'AccessKey ' . $this->access_key
+                ],
+            ]);
         } catch (Exception $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
         }

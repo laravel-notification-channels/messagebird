@@ -3,7 +3,7 @@
 namespace NotificationChannels\Messagebird;
 
 use Illuminate\Support\ServiceProvider;
-use MessageBird\Client;
+use GuzzleHttp\Client;
 use NotificationChannels\Messagebird\Exceptions\InvalidConfiguration;
 
 class MessagebirdServiceProvider extends ServiceProvider
@@ -22,9 +22,7 @@ class MessagebirdServiceProvider extends ServiceProvider
                     throw InvalidConfiguration::configurationNotSet();
                 }
 
-                return new MessagebirdClient(new Client(
-                    $config['access_key']
-                ));
+                return new MessagebirdClient(new Client(), $config['access_key']);
             });
     }
 }
