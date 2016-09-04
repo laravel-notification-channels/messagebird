@@ -16,6 +16,7 @@ class MessagebirdChannelTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->notification = new TestNotification;
+        $this->string_notification = new TestStringNotification;
         $this->notifiable = new TestNotifiable;
         $this->guzzle = Mockery::mock(new Client());
         $this->client = Mockery::mock(new MessagebirdClient($this->guzzle, 'test_ek1qBbKbHoA20gZHM40RBjxzX'));
@@ -46,7 +47,7 @@ class MessagebirdChannelTest extends PHPUnit_Framework_TestCase
     public function if_string_message_can_be_send()
     {
         $this->client->shouldReceive('send')->once();
-        $this->channel->send('Test by string', $this->notification);
+        $this->channel->send($this->notifiable, $this->string_notification);
     }
 }
 
@@ -65,5 +66,13 @@ class TestNotification extends Notification
     public function toMessagebird($notifiable)
     {
         return (new MessagebirdMessage('Message content'))->setOriginator('APPNAME')->setRecipients('31650520659');
+    }
+}
+
+class TestStringNotification extends Notification
+{
+    public function toMessagebird($notifiable)
+    {
+        return 'Test by string';
     }
 }
