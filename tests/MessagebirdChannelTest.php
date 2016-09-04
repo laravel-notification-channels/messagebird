@@ -41,6 +41,13 @@ class MessagebirdChannelTest extends PHPUnit_Framework_TestCase
         $this->client->shouldReceive('send')->once();
         $this->channel->send($this->notifiable, $this->notification);
     }
+
+    /** @test */
+    public function if_string_message_can_be_send()
+    {
+        $this->client->shouldReceive('send')->once();
+        $this->channel->send('Test by string', $this->notification);
+    }
 }
 
 class TestNotifiable
