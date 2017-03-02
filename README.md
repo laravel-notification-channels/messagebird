@@ -49,7 +49,7 @@ You must install the service provider:
 
 ## Setting up your Messagebird account
 
-Add your Messagebird Access Key, Default originator (name or number of sender), and default recipients to your `config/services.php`:
+Add the environment variables to your `config/services.php`:
 
 ```php
 // config/services.php
@@ -58,6 +58,18 @@ Add your Messagebird Access Key, Default originator (name or number of sender), 
     'access_key' => env('MESSAGEBIRD_ACCESS_KEY'),
     'originator' => env('MESSAGEBIRD_ORIGINATOR'),
     'recipients' => env('MESSAGEBIRD_RECIPIENTS'),
+],
+...
+```
+
+Add your Messagebird Access Key, Default originator (name or number of sender), and default recipients to your `.env`:
+
+```php
+// .env
+...
+MESSAGEBIRD_ACCESS_KEY=
+MESSAGEBIRD_ORIGINATOR=
+MESSAGEBIRD_RECIPIENTS=
 ],
 ...
 ```
