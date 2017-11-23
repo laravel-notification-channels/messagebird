@@ -7,6 +7,7 @@ class MessagebirdMessage
     public $body;
     public $originator;
     public $recipients;
+    public $reference;
 
     public static function create($body = '')
     {
@@ -15,7 +16,7 @@ class MessagebirdMessage
 
     public function __construct($body = '')
     {
-        if (! empty($body)) {
+        if (!empty($body)) {
             $this->body = trim($body);
         }
     }
@@ -41,6 +42,13 @@ class MessagebirdMessage
         }
 
         $this->recipients = $recipients;
+
+        return $this;
+    }
+
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
 
         return $this;
     }
