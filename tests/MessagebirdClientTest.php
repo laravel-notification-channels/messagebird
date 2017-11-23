@@ -14,7 +14,7 @@ class MessagebirdClientTest extends PHPUnit_Framework_TestCase
     {
         $this->guzzle = Mockery::mock(new Client());
         $this->client = Mockery::mock(new MessagebirdClient($this->guzzle, 'test_ek1qBbKbHoA20gZHM40RBjxzX'));
-        $this->message = (new MessagebirdMessage('Message content'))->setOriginator('APPNAME')->setRecipients('31650520659');
+        $this->message = (new MessagebirdMessage('Message content'))->setOriginator('APPNAME')->setRecipients('31650520659')->setReference('000123');
     }
 
     public function tearDown()
