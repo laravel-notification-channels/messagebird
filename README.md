@@ -49,7 +49,7 @@ You must install the service provider:
 
 ## Setting up your Messagebird account
 
-Add your Messagebird Access Key, Default originator (name or number of sender), and default recipients to your `config/services.php`:
+Add the environment variables to your `config/services.php`:
 
 ```php
 // config/services.php
@@ -58,6 +58,18 @@ Add your Messagebird Access Key, Default originator (name or number of sender), 
     'access_key' => env('MESSAGEBIRD_ACCESS_KEY'),
     'originator' => env('MESSAGEBIRD_ORIGINATOR'),
     'recipients' => env('MESSAGEBIRD_RECIPIENTS'),
+],
+...
+```
+
+Add your Messagebird Access Key, Default originator (name or number of sender), and default recipients to your `.env`:
+
+```php
+// .env
+...
+MESSAGEBIRD_ACCESS_KEY=
+MESSAGEBIRD_ORIGINATOR=
+MESSAGEBIRD_RECIPIENTS=
 ],
 ...
 ```
@@ -85,6 +97,18 @@ class VpsServerOrdered extends Notification
         return (new MessagebirdMessage("Your {$notifiable->service} was ordered!"));
     }
 }
+```
+
+Additionally you can add recipients (single value or array)
+
+``` php
+    return (new MessagebirdMessage("Your {$notifiable->service} was ordered!"))->setRecipients($recipients);
+```
+
+In order to handle a status report you can also set a reference
+
+``` php
+    return (new MessagebirdMessage("Your {$notifiable->service} was ordered!"))->setReference($id);
 ```
 
 ## Changelog
