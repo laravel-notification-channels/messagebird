@@ -102,13 +102,13 @@ class VpsServerOrdered extends Notification
 Additionally you can add recipients (single value or array)
 
 ``` php
-    return (new MessagebirdMessage("Your {$notifiable->service} was ordered!"))->setRecipients($recipients);
+return (new MessagebirdMessage("Your {$notifiable->service} was ordered!"))->setRecipients($recipients);
 ```
 
 In order to handle a status report you can also set a reference
 
 ``` php
-    return (new MessagebirdMessage("Your {$notifiable->service} was ordered!"))->setReference($id);
+return (new MessagebirdMessage("Your {$notifiable->service} was ordered!"))->setReference($id);
 ```
 
 ## Changelog
