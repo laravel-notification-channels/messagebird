@@ -35,6 +35,9 @@ class MessagebirdClient
         if (empty($message->recipients)) {
             $message->setRecipients(config('services.messagebird.recipients'));
         }
+        if (empty($message->datacoding)) {
+            $message->setDatacoding('auto');
+        }
 
         try {
             $this->client->request('POST', 'https://rest.messagebird.com/messages', [
