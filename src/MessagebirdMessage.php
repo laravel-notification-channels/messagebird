@@ -52,6 +52,14 @@ class MessagebirdMessage
 
         return $this;
     }
+    
+    public function setDatacoding($datacoding)
+    {
+        $this->datacoding = $datacoding;
+
+        return $this;
+    }
+
 
     public function toJson()
     {
