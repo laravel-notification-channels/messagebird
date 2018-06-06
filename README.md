@@ -37,7 +37,7 @@ You can install the package via composer:
 composer require laravel-notification-channels/messagebird
 ```
 
-You must install the service provider:
+for Laravel 5.4 or lower, you must add the service provider to your config:
 
 ```php
 // config/app.php
