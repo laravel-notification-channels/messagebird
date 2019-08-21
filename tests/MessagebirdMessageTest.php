@@ -3,8 +3,9 @@
 namespace NotificationChannels\Messagebird\Test;
 
 use NotificationChannels\Messagebird\MessagebirdMessage;
+use PHPUnit\Framework\TestCase;
 
-class MessagebirdMessageTest extends \PHPUnit_Framework_TestCase
+class MessagebirdMessageTest extends TestCase
 {
     /** @test */
     public function it_can_be_instantiated()
