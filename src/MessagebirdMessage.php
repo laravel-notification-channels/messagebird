@@ -16,7 +16,7 @@ class MessagebirdMessage
 
     public function __construct($body = '')
     {
-        if (!empty($body)) {
+        if (! empty($body)) {
             $this->body = trim($body);
         }
     }
@@ -52,14 +52,13 @@ class MessagebirdMessage
 
         return $this;
     }
-    
+
     public function setDatacoding($datacoding)
     {
         $this->datacoding = $datacoding;
 
         return $this;
     }
-
 
     public function toJson()
     {

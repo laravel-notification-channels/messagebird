@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\Messagebird;
 
-use Illuminate\Support\ServiceProvider;
 use GuzzleHttp\Client;
+use Illuminate\Support\ServiceProvider;
 use NotificationChannels\Messagebird\Exceptions\InvalidConfiguration;
 
 class MessagebirdServiceProvider extends ServiceProvider
