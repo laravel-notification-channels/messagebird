@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\Messagebird\Test;
 
-use NotificationChannels\Messagebird\MessagebirdMessage;
 use PHPUnit\Framework\TestCase;
+use NotificationChannels\Messagebird\MessagebirdMessage;
 
 class MessagebirdMessageTest extends TestCase
 {
