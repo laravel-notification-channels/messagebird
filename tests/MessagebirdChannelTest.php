@@ -4,16 +4,16 @@ namespace NotificationChannels\Messagebird\Test;
 
 use Mockery;
 use GuzzleHttp\Client;
+use PHPUnit\Framework\TestCase;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Messagebird\MessagebirdClient;
 use NotificationChannels\Messagebird\MessagebirdChannel;
 use NotificationChannels\Messagebird\MessagebirdMessage;
-use PHPUnit\Framework\TestCase;
 
 class MessagebirdChannelTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->notification = new TestNotification;
         $this->string_notification = new TestStringNotification;
@@ -23,7 +23,7 @@ class MessagebirdChannelTest extends TestCase
         $this->channel = new MessagebirdChannel($this->client);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
         parent::tearDown();
@@ -40,14 +40,14 @@ class MessagebirdChannelTest extends TestCase
     public function test_it_shares_message()
     {
         $this->client->shouldReceive('send')->once();
-        $this->channel->send($this->notifiable, $this->notification);
+        $this->assertNull($this->channel->send($this->notifiable, $this->notification));
     }
 
     /** @test */
     public function if_string_message_can_be_send()
     {
         $this->client->shouldReceive('send')->once();
-        $this->channel->send($this->notifiable, $this->string_notification);
+        $this->assertNull($this->channel->send($this->notifiable, $this->string_notification));
     }
 }
 
