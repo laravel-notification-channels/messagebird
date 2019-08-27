@@ -132,6 +132,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ## Credits
 
 - [Peter Steenbergen](http://petericebear.github.io)
+- [Tonko Mulder](https://tonkomulder.nl)
 - [All Contributors](../../contributors)
 
 ## License
