@@ -32,7 +32,7 @@ class MessagebirdChannel
     {
         $message = $notification->toMessagebird($notifiable);
 
-        $response = [];
+        $data = [];
 
         if (is_string($message)) {
             $message = MessagebirdMessage::create($message);
@@ -43,10 +43,10 @@ class MessagebirdChannel
         }
 
         try {
-            $response = $this->client->send($message);
+            $data = $this->client->send($message);
 
             if ($this->dispatcher !== null) {
-                $this->dispatcher->dispatch('messagebird-sms', [$notifiable, $notification, $response]);
+                $this->dispatcher->dispatch('messagebird-sms', [$notifiable, $notification, $data]);
             }
         } catch (CouldNotSendNotification $e) {
             $this->dispatcher->dispatch(
@@ -59,6 +59,6 @@ class MessagebirdChannel
             );
         }
 
-        return $response;
+        return $data;
     }
 }

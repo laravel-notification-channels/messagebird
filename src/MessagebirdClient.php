@@ -41,12 +41,12 @@ class MessagebirdClient
         }
 
         try {
-            return $this->client->request('POST', 'https://rest.messagebird.com/messages', [
+            return json_decode($this->client->request('POST', 'https://rest.messagebird.com/messages', [
                 'body' => $message->toJson(),
                 'headers' => [
                     'Authorization' => 'AccessKey '.$this->access_key,
                 ],
-            ]);
+            ])->getBody()->__toString());
         } catch (Exception $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
         }
