@@ -45,7 +45,7 @@ class MessagebirdChannel
         try {
             $response = $this->client->send($message);
 
-            if($this->dispatcher !== null) {
+            if ($this->dispatcher !== null) {
                 $this->dispatcher->dispatch('messagebird-sms', [$notifiable, $notification, $response]);
             }
         } catch (CouldNotSendNotification $e) {
