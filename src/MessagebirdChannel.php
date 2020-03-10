@@ -11,7 +11,7 @@ class MessagebirdChannel
 {
     /** @var \NotificationChannels\Messagebird\MessagebirdClient */
     protected $client;
-    private $_dispatcher;
+    private $dispatcher;
 
     public function __construct(MessagebirdClient $client, Dispatcher $dispatcher = null)
     {
