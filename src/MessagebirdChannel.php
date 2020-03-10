@@ -16,7 +16,7 @@ class MessagebirdChannel
     public function __construct(MessagebirdClient $client, Dispatcher $dispatcher = null)
     {
         $this->client = $client;
-        $this->_dispatcher = $dispatcher;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -45,8 +45,8 @@ class MessagebirdChannel
         try {
             $response = $this->client->send($message);
 
-            if($this->_dispatcher !== null){
-                $this->_dispatcher->dispatch('messagebird-sms', [$notifiable, $notification, $response]);
+            if($this->dispatcher !== null){
+                $this->dispatcher->dispatch('messagebird-sms', [$notifiable, $notification, $response]);
             }
         } catch (CouldNotSendNotification $e) {
             new NotificationFailed(
