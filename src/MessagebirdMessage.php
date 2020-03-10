@@ -8,6 +8,7 @@ class MessagebirdMessage
     public $originator;
     public $recipients;
     public $reference;
+    public $reportUrl;
 
     public static function create($body = '')
     {
@@ -56,6 +57,13 @@ class MessagebirdMessage
     public function setDatacoding($datacoding)
     {
         $this->datacoding = $datacoding;
+
+        return $this;
+    }
+
+    public function setReportUrl($reportUrl)
+    {
+        $this->reportUrl = $reportUrl;
 
         return $this;
     }
