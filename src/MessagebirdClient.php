@@ -47,6 +47,7 @@ class MessagebirdClient
                     'Authorization' => 'AccessKey '.$this->access_key,
                 ],
             ]);
+
             return json_decode($response->getBody()->__toString());
         } catch (Exception $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
