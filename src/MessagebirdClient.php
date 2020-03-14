@@ -25,6 +25,7 @@ class MessagebirdClient
     /**
      * Send the Message.
      * @param MessagebirdMessage $message
+     * @return
      * @throws CouldNotSendNotification
      */
     public function send(MessagebirdMessage $message)
@@ -40,12 +41,14 @@ class MessagebirdClient
         }
 
         try {
-            $this->client->request('POST', 'https://rest.messagebird.com/messages', [
+            $response = $this->client->request('POST', 'https://rest.messagebird.com/messages', [
                 'body' => $message->toJson(),
                 'headers' => [
                     'Authorization' => 'AccessKey '.$this->access_key,
                 ],
             ]);
+
+            return json_decode($response->getBody()->__toString());
         } catch (Exception $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
         }
