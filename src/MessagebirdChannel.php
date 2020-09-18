@@ -49,14 +49,16 @@ class MessagebirdChannel
                 $this->dispatcher->dispatch('messagebird-sms', [$notifiable, $notification, $data]);
             }
         } catch (CouldNotSendNotification $e) {
-            $this->dispatcher->dispatch(
-                new NotificationFailed(
-                    $notifiable,
-                    $notification,
-                    'messagebird-sms',
-                    $e->getMessage()
-            )
-            );
+            if ($this->dispatcher !== null) {
+                $this->dispatcher->dispatch(
+                    new NotificationFailed(
+                        $notifiable,
+                        $notification,
+                        'messagebird-sms',
+                        $e->getMessage()
+                    )
+                );
+            }
         }
 
         return $data;
