@@ -4,12 +4,12 @@ namespace NotificationChannels\Messagebird\Test;
 
 use Mockery;
 use GuzzleHttp\Client;
-use PHPUnit\Framework\TestCase;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Messagebird\MessagebirdClient;
 use NotificationChannels\Messagebird\MessagebirdChannel;
 use NotificationChannels\Messagebird\MessagebirdMessage;
+use PHPUnit\Framework\TestCase;
 
 class MessagebirdChannelTest extends TestCase
 {
