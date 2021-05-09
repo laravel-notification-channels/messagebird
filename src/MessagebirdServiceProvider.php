@@ -3,6 +3,7 @@
 namespace NotificationChannels\Messagebird;
 
 use GuzzleHttp\Client;
+use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\ServiceProvider;
 use NotificationChannels\Messagebird\Exceptions\InvalidConfiguration;
 
@@ -24,5 +25,9 @@ class MessagebirdServiceProvider extends ServiceProvider
 
                 return new MessagebirdClient(new Client(), $config['access_key']);
             });
+        
+        $this->app[ChannelManager::class]->extend('messagebird', function($app) {
+            return $app->make(MessagebirdChannel::class);
+        });
     }
 }
