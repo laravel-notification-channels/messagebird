@@ -26,7 +26,7 @@ class MessagebirdServiceProvider extends ServiceProvider
                 return new MessagebirdClient(new Client(), $config['access_key']);
             });
         
-        $this->app[ChannelManager::class]->extend('messagebird', function($app) {
+        $this->app[ChannelManager::class]->extend('messagebird', function ($app) {
             return $app->make(MessagebirdChannel::class);
         });
     }
