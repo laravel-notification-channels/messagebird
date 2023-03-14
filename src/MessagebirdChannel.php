@@ -22,10 +22,10 @@ class MessagebirdChannel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
-     *
+     * @param  mixed  $notifiable
+     * @param  \Illuminate\Notifications\Notification  $notification
      * @return object with response body data if succesful response from API | empty array if not
+     *
      * @throws \NotificationChannels\MessageBird\Exceptions\CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
@@ -38,7 +38,7 @@ class MessagebirdChannel
             $message = MessagebirdMessage::create($message);
         }
 
-        if ($to = $notifiable->routeNotificationFor('messagebird')) {
+        if ($to = $notifiable->routeNotificationFor('messagebird', $notification)) {
             $message->setRecipients($to);
         }
 
