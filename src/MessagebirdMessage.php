@@ -8,6 +8,7 @@ class MessagebirdMessage
     public $originator;
     public $recipients;
     public $reference;
+    public $datacoding;
     public $reportUrl;
 
     public static function create($body = '')
