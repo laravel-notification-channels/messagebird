@@ -24,8 +24,8 @@ class MessagebirdChannel
      *
      * @param  mixed  $notifiable
      * @param  \Illuminate\Notifications\Notification  $notification
-     *
      * @return object with response body data if succesful response from API | empty array if not
+     *
      * @throws \NotificationChannels\MessageBird\Exceptions\CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
